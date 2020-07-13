@@ -1,0 +1,14 @@
+{% extends 'encyclopedia/layout.html' %}
+
+{% load markdown_extras %}
+
+{% block title %}
+    {{title}} - Wiki
+{% endblock %}
+
+{% block nav %}
+{% endblock %}
+
+{% block body %}
+    {{ entry | markdown | safe }}
+{% endblock %}
