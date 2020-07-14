@@ -1,0 +1,14 @@
+{% extends 'encyclopedia/layout.html' %}
+
+{% load static %}
+
+{% block title %}
+    {{title}} - Encyclopedia
+{% endblock %}
+
+{% block body %}
+<div class="main col-lg-10 col-md-9">
+    <p class="message">{{message}}</p>
+    <p>You can create a new article <a href="{% url 'encyclopedia:create' %}">here</a>.</p>
+</div>
+{% endblock %}

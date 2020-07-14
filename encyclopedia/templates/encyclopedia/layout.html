@@ -12,20 +12,22 @@
         <div class="row">
             <div class="sidebar col-lg-2 col-md-3">
                 <h2>Wiki</h2>
-                <form>
-                    <input class="search" type="text" name="q" placeholder="Search Encyclopedia">
+                <form action="{% url 'encyclopedia:search'%}" method="GET">
+                    <input class="search" type="text" name="q" placeholder="Search Encyclopedia" autocomplete="off">
                 </form>
-                <div>
-                    <a href="{% url 'index' %}">Home</a>
+                <div class="side-links">
+                    <div>
+                        <a href="{% url 'encyclopedia:index' %}">Home</a>
+                    </div>
+                    <div>
+                        <a href="{% url 'encyclopedia:create' %}">Create New Page</a>
+                    </div>
+                    <div>
+                        <a href="{% url 'encyclopedia:random' %}">Random Page</a>
+                    </div>
+                    {% block nav %}
+                    {% endblock %}
                 </div>
-                <div>
-                    Create New Page
-                </div>
-                <div>
-                    Random Page
-                </div>
-                {% block nav %}
-                {% endblock %}
             </div>
             <div class="main col-lg-10 col-md-9">
                 {% block body %}

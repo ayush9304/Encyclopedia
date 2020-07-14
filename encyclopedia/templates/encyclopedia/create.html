@@ -1,0 +1,31 @@
+{% extends 'encyclopedia/layout.html' %}
+
+
+
+{% block title %}
+Create new page - Encyclopedia
+{% endblock %}
+
+{% block body %}
+    <h1>Create new entry</h1>
+    <div class="create">
+        <form action="{% url 'encyclopedia:create' %}" method="POST">
+            {% csrf_token %}
+            <div>
+                <div class="label">
+                    Title<span style="color: red;">*</span>
+                </div>
+                <input type="text" name="title" value="{{title | default:''}}" maxlength="30" required="required" size=30 autocomplete="off">
+                &emsp;
+                <span style="color: red;">{{message | default:""}}</span>
+            </div>
+            <div>
+                <div class="label">
+                    Body<span style="color: red;">*</span>
+                </div>
+                <textarea name="content" required="required">{{content | default:""}}</textarea>
+            </div>
+            <div><input type="submit" value="Save" id="save"></div>
+        </form>
+    </div>
+{% endblock %}

@@ -15,10 +15,15 @@ h1 {
 textarea {
     height: 90vh;
     width: 80%;
+    border-radius: 3px;
+    border-width: .5px;
+}
+textarea:focus{
+    outline-color: #3366cc;
 }
 
 .main {
-    padding: 10px;
+    padding: 20px;
 }
 
 .search {
@@ -26,13 +31,85 @@ textarea {
     font-size: 15px;
     line-height: 15px;
 }
+.search:focus{
+    outline-color: #3366cc;
+}
 
 .sidebar {
     background-color: #f0f0f0;
-    height: 100vh;
-    padding: 20px;
+    height: 150vh;
+    padding: 20px 20px 20px 30px;
+    box-shadow: 0px 0px 15px #f0f0f0;
 }
 
 .sidebar h2 {
     margin-top: 5px;
+    margin-bottom: 10px;
+}
+.side-links{
+    margin-top: 10px;
+}
+.side-links a{
+    font-size: small;
+}
+
+.not_found > span > span{
+    color: #a55858;
+}
+
+.not_found > span{
+    font-weight: 550;
+}
+
+.not_found{
+    margin-top: 15px;
+    line-height: 30px;
+}
+#search_btn{
+    background: none;
+    border: none;
+    outline: none;
+    color: #007bff;
+    line-height: 15px;
+    height: 20px;
+    padding: 0px;
+}
+#search_btn:hover{
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+.create{
+    margin-top: 20px;
+}
+
+.create > form > div{
+    margin-top: 7px;
+}
+
+.create .label{
+    font-weight: 500;
+}
+.create input[type=text]:focus{
+    outline-color: #3366cc;
+}
+
+#save{
+    background-color: #3366cc;
+    border: none;
+    color: white;
+    padding: 3px 30px 3px 30px;
+    border-radius: 2px;
+}
+
+#save:hover{
+    outline: none;
+    background-color: #447ff5;
+}
+#save:focus{
+    outline: none;
+}
+#save:active{
+    outline: none;
+    background-color: #2a4b8d;
 }
