@@ -13,12 +13,18 @@ h1 {
 }
 
 textarea {
-    height: 90vh;
+    height: 70vh;
     width: 80%;
+    border-radius: 3px;
+    border-width: .5px;
+}
+
+textarea:focus{
+    outline-color: #3366cc;
 }
 
 .main {
-    padding: 10px;
+    padding: 20px;
 }
 
 .search {
@@ -27,12 +33,18 @@ textarea {
     line-height: 15px;
 }
 
+.search:focus{
+    outline-color: #3366cc;
+}
+
 .sidebar {
     background-color: #f0f0f0;
-    height: 100vh;
-    padding: 20px;
+    height: 110vh;
+    padding: 20px 20px 20px 30px;
+    box-shadow: 0px 0px 15px #f0f0f0;
 }
 
 .sidebar h2 {
     margin-top: 5px;
+    margin-bottom: 10px;
 }
