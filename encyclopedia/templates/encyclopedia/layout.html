@@ -12,8 +12,9 @@
         <div class="row">
             <div class="sidebar col-lg-2 col-md-3">
                 <h2>Wiki</h2>
-                <form>
-                    <input class="search" type="text" name="q" placeholder="Search Encyclopedia" autocomplete="off">
+                <form action="{% url 'encyclopedia:search' %}" method="POST">
+                    {% csrf_token %}
+                    <input class="search" type="text" name="q" placeholder="Search Encyclopedia" autocomplete="off" value="{{ query | default:'' }}" required="required">
                 </form>
                 <div class="side-links">
                     <div>
@@ -23,7 +24,10 @@
                         <a href="#">Create New Page</a> <!------------>
                     </div>
                     <div>
-                        <a href="#">Random Page</a> <!------------>
+                        <a href="{% url 'encyclopedia:random' %}">Random Page</a> <!------------>
+                    </div>
+                    <div>
+                        <a href="{% url 'encyclopedia:search' %}">Search Page</a>
                     </div>
                     {% block nav %}
                     {% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'encyclopedia/layout.html' %}
+
+{% block title %}
+    {{query}} - Search results - Encyclopedia
+{% endblock %}
+
+{% block body %}
+    <h1>Search results for '{{query}}' </h1>
+    {% if found %}
+        <ul>
+            {% for result in results %}
+                <li>
+                    <a href="{% url 'encyclopedia:entry' title=result %}">{{result}}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="not_found">
+            <span>
+                The page "<span>{{query}}</span>" does not exist.
+            </span>
+            <br>There were no results matching the query.
+            <br>You can create a new page <a href="#">here</a>. <!------------>
+        </p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'encyclopedia/layout.html' %}
+
+{% load static %}
+
+{% block title %}
+    Wiki Search | Encyclopedia
+{% endblock %}
+
+{% block body %}
+    <center>
+        <div class="search_label">
+            <h1>Wiki Search</h1>
+            <form action="{% url 'encyclopedia:search' %}" method="POST"> <!------------->
+                {% csrf_token %}
+                <div class="search_bar">
+                    <img class="search_logo" src="{% static 'encyclopedia/images/search_icon.png' %}">
+                    <input class="search_box" type="text" name="q" autocomplete="off" value="{{query | default:''}}" required="required">
+                </div>
+                <div class="search_btn">
+                    <input type="submit" value="Search" class="btn">
+                </div>
+            </form>
+        </div>
+    </center>
+{% endblock %}

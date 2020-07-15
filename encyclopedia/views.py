@@ -1,7 +1,10 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 from . import util
 
+import random
 
 def index(request):
     return render(request, "encyclopedia/index.html", {
@@ -21,3 +24,41 @@ def entry(request, title):
             'found':False,
             'title':title
         })
+
+def search(request, query=None):
+    if (query is not None) or (request.method == 'POST'):
+        if request.method == 'POST':
+            qry = request.POST.get('q')
+        else:
+            qry = query
+        entry = util.get_entry(qry)
+        if entry is not None:
+            return HttpResponseRedirect(reverse("encyclopedia:entry", args=[qry]))
+        else:
+            entries = util.list_entries()
+            results = []
+            for entry in entries:
+                entry = entry.lower()
+                if (entry.find(qry.lower()) >= 0):
+                    results.append(entry)
+            if results:
+                return render(request, "encyclopedia/result.html", {
+                    "found":True,    
+                    "query":qry,
+                    "results": results
+                    })
+            else:
+                return render(request, "encyclopedia/result.html", {
+                    "found":False,
+                    "query":qry
+                    })
+    else:
+        return render(request, 'encyclopedia/search.html')
+
+def randompage(request):
+    entries = util.list_entries()
+    n=0
+    for entry in entries:
+        n+=1
+    i = random.randint(1,n)
+    return HttpResponseRedirect(reverse("encyclopedia:entry", args=[entries[i-1]]))

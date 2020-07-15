@@ -12,6 +12,20 @@
         </div>
         {{ entry | markdown | safe }}
     {% else %}
-        Not found
+        <h1>{{title}}</h1>
+        <form action="{% url 'encyclopedia:search' %}" method="POST">
+            {% csrf_token %}
+            <p class="not_found">
+                <span>
+                    Wiki does not have an article with this exact name.
+                </span>
+                <br>Please 
+                <input type="hidden" name="q" value="{{ title }}">
+                <button id= "hid_btn" type="submit">search for <i>{{title}}</i> in Encyclopedia
+                </button> to check for alternative titles or spellings.
+                <br>Or, You can create a new article 
+                <a href="#">here</a>. <!-------------->
+            </p>
+        </form>
     {% endif %}
 {% endblock %}
