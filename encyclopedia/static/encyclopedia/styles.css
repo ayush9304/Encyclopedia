@@ -48,3 +48,11 @@ textarea:focus{
     margin-top: 5px;
     margin-bottom: 10px;
 }
+
+.side-links{
+    margin-top: 10px;
+}
+
+.side-links a{
+    font-size: small;
+}
