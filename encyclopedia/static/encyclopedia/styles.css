@@ -56,3 +56,8 @@ textarea:focus{
 .side-links a{
     font-size: small;
 }
+
+#edit_btn{
+    float: right;
+    margin-right: 10px;
+}

@@ -1,0 +1,17 @@
+{% extends 'encyclopedia/layout.html' %}
+{% load markdown_extras %}
+
+{% block title %}
+    {{title}} - Wiki | Encyclopedia
+{% endblock %}
+
+{% block body %}
+    {% if found %}
+        <div id="edit_btn">
+            <a href="#">Edit this page</a> <!--------------->
+        </div>
+        {{ entry | markdown | safe }}
+    {% else %}
+        Not found
+    {% endif %}
+{% endblock %}
