@@ -6,9 +6,10 @@ from . import util
 
 import random
 
-def index(request):
+def index(request, message=''):
     return render(request, "encyclopedia/index.html", {
-        "entries": util.list_entries()
+        "entries": util.list_entries(),
+        "message":message
     })
 
 def entry(request, title):
@@ -69,7 +70,7 @@ def create(request):
         content = request.POST['content']
         if util.get_entry(title) is not None:
             return render(request, "encyclopedia/create_entry.html", {
-                "message":f"An entry with title '{title}' already exists. Try another one.",
+                "message":f"An entry with title '{title}' already exists. Please try another one.",
                 "title":title,
                 "content":content
             })
@@ -78,3 +79,53 @@ def create(request):
             return HttpResponseRedirect(reverse("encyclopedia:entry", args=[title]))
     else:
         return render(request, "encyclopedia/create_entry.html")
+
+def edit_entry(request):
+    if request.method == "POST":
+        if request.POST['resubmit'] == "True":
+            old_title = request.POST.get('old_title')
+            title = request.POST.get('title')
+            content = request.POST.get('content')
+            entries = util.list_entries()
+            for entry in entries:
+                if entry.lower() == old_title.lower():
+                    entries.remove(entry)
+            for entry in entries:
+                if entry.lower() == title.lower():
+                    return render(request, "encyclopedia/edit_entry.html", {
+                        "message":f"Another entry with title '{title}' already exists. Please use different one.",
+                        "old_title":old_title,
+                        "title":title,
+                        "content":content
+                    })
+            else:
+                util.save_entry(title, content)
+                return HttpResponseRedirect(reverse("encyclopedia:entry", args=[title]))
+        else:
+            title = request.POST.get('title')
+            old_title = request.POST['title']
+            content = util.get_entry(title)
+            return render(request, "encyclopedia/edit_entry.html", {
+                "old_title":title,
+                "title":title,
+                "content":content
+            })
+    else:
+        entries = util.list_entries()
+        return render(request, "encyclopedia/index.html", {
+            "message":"Please select an entry to edit.",
+            "entries":entries
+        })
+
+
+#if util.get_entry(title) is not None:
+#    return render(request, "encyclopedia/create_entry.html", {
+#        "message":f"An entry with title '{title}' already exists. Try another one.",
+#        "title":title,
+#        "content":content
+#    })
+#else:
+#    util.save_entry(title, content)
+#    return HttpResponseRedirect(reverse("encyclopedia:entry", args=[title]))
+#else:
+#return render(request, "encyclopedia/create_entry.html")

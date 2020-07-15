@@ -8,7 +8,12 @@
 {% block body %}
     {% if found %}
         <div id="edit_btn">
-            <a href="#">Edit this page</a> <!--------------->
+            <form action="{% url 'encyclopedia:edit_entry' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="resubmit" value="False">
+                <input type="hidden" name="title" value="{{title}}">
+                <button type="submit" id="hid_btn">Edit this page</button>
+            </form>
         </div>
         {{ entry | markdown | safe }}
     {% else %}

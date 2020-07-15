@@ -1,0 +1,29 @@
+{% extends 'encyclopedia/layout.html' %}
+
+{% block title %}
+    Edit | Encyclopedia | Wiki
+{% endblock %}
+
+{% block body %}
+    <h1>Edit Entry</h1>
+    <form action="#" method="POST">
+        {% csrf_token %}
+        <div>
+            <div class="label">
+                Title<span style="color: red;">*</span>
+            </div>
+            <input type="hidden" name="resubmit" value="{{resubmit | default:'True'}}">
+            <input type="hidden" name="old_title" value="{{old_title}}">
+            <input id="c_title" type="text" name="title" value="{{title | default:''}}" maxlength="30" required="required" size=30 autocomplete="off">
+            &emsp;
+            <span style="color: red;">{{message | default:""}}</span>
+        </div>
+        <div>
+            <div class="label">
+                Body<span style="color: red;">*</span>
+            </div>
+            <textarea name="content" required="required">{{content | default:""}}</textarea>
+        </div>
+        <div><input type="submit" value="Save" class="btn" id="c_btn"></div>
+    </form>
+{% endblock %}

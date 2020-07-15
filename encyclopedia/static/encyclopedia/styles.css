@@ -73,11 +73,13 @@ textarea:focus{
 }
 
 .not_found > span > span{
-    color: #a55858;
+    color: #d10303;
+    font-style: italic;
 }
 
 .not_found > span{
     font-weight: 550;
+    color: #5c0202;
 }
 
 .btn{
