@@ -17,7 +17,7 @@ h1 {
 }
 
 textarea {
-    height: 70vh;
+    height: 61vh;
     width: 80%;
     border-radius: 3px;
     border-width: .5px;
@@ -43,7 +43,8 @@ textarea:focus{
 
 .sidebar {
     background-color: #f0f0f0;
-    height: 100vh;
+    min-height: 100vh;
+    max-height: fit-content;
     padding: 20px 20px 20px 30px;
     box-shadow: 0px 0px 15px #f0f0f0;
 }
@@ -153,4 +154,12 @@ textarea:focus{
 
 .search_btn{
     margin-top: 1.1em;
+}
+
+#c_btn{
+    margin-top: 6px;
+}
+
+input:focus{
+    outline-color: #3366cc;
 }

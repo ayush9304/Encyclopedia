@@ -24,7 +24,7 @@
                 <button id= "hid_btn" type="submit">search for <i>{{title}}</i> in Encyclopedia
                 </button> to check for alternative titles or spellings.
                 <br>Or, You can create a new article 
-                <a href="#">here</a>. <!-------------->
+                <a href="{% url 'encyclopedia:create' %}">here</a>. <!-------------->
             </p>
         </form>
     {% endif %}

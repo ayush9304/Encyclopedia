@@ -62,3 +62,19 @@ def randompage(request):
         n+=1
     i = random.randint(1,n)
     return HttpResponseRedirect(reverse("encyclopedia:entry", args=[entries[i-1]]))
+
+def create(request):
+    if request.method == "POST":
+        title = request.POST['title']
+        content = request.POST['content']
+        if util.get_entry(title) is not None:
+            return render(request, "encyclopedia/create_entry.html", {
+                "message":f"An entry with title '{title}' already exists. Try another one.",
+                "title":title,
+                "content":content
+            })
+        else:
+            util.save_entry(title, content)
+            return HttpResponseRedirect(reverse("encyclopedia:entry", args=[title]))
+    else:
+        return render(request, "encyclopedia/create_entry.html")

@@ -20,7 +20,7 @@
                 The page "<span>{{query}}</span>" does not exist.
             </span>
             <br>There were no results matching the query.
-            <br>You can create a new page <a href="#">here</a>. <!------------>
+            <br>You can create a new page <a href="{% url 'encyclopedia:create' %}">here</a>. <!------------>
         </p>
     {% endif %}
 {% endblock %}
